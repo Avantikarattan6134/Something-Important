@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff69b4, #ffb6c1);
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #yes {
+            background: #ff1493;
+            color: white;
+        }
+        #yes:hover {
+            background: #ff69b4;
+        }
+        #no {
+            background: #dc143c;
+            color: white;
+        }
+        #no:hover {
+            background: #b22222;
+        }
+        #message {
+            margin-top: 30px;
+            font-size: 1.5em;
+            display: none;
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: #ff1493;
+            font-size: 2em;
+            animation: float 3s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <h1>Will You Be My Valentine?</h1>
+    <p>Hey [Boyfriend's Name], I've been thinking about you a lot. You're the best thing that's ever happened to me. Will you make this Valentine's Day even more special by being mine?</p>
+    <div class="buttons">
+        <button id="yes">Yes! 💖</button>
+        <button id="no">No 😢</button>
+    </div>
+    <div id="message"></div>
+
+    <script>
+        const yesBtn = document.getElementById('yes');
+        const noBtn = document.getElementById('no');
+        const message = document.getElementById('message');
+        const heartsContainer = document.getElementById('hearts');
+
+        // Function to create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        // Yes button: Show happy message and hearts
+        yesBtn.addEventListener('click', () => {
+            message.innerHTML = "Yay! I love you so much! 💕 Can't wait for our date!";
+            message.style.display = 'block';
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        });
+
+        // No button: Playful rejection (you can customize)
+        noBtn.addEventListener('click', () => {
+            message.innerHTML = "Aww, that's okay! But I'm not giving up... 😉";
+            message.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
